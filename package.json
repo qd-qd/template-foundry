@@ -1,10 +1,24 @@
 {
-  "name": "@prb/foundry-template",
-  "description": "Foundry-based template for developing Solidity smart contracts",
-  "version": "1.0.0",
-  "author": {
-    "name": "Paul Razvan Berg",
-    "url": "https://github.com/PaulRBerg"
+  "name": "@qd-qd/template-foundry",
+  "description": "Foundry-based template for developing Solidity smart contracts. Based on PaulRBerg template.",
+  "version": "0.0.1",
+  "contributors": [
+    {
+      "name": "qd-qd",
+      "email": "qdqdqdqdqd@protonmail.com",
+      "url": "https://github.com/qd-qd"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:qd-qd/template-foundry.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qd-qd/template-foundry/issues"
+  },
+  "homepage": "https://github.com/qd-qd/template-foundry#readme",
+  "engines": {
+    "node": ">= 18"
   },
   "devDependencies": {
     "prettier": "^2.8.7",
@@ -14,12 +28,12 @@
     "blockchain",
     "ethereum",
     "forge",
+    "evm",
     "foundry",
     "smart-contracts",
-    "solidity",
-    "template"
+    "solidity"
   ],
-  "private": true,
+
   "scripts": {
     "clean": "rm -rf cache out",
     "lint": "npm run lint:sol && npm run prettier:check",
