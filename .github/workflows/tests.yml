@@ -37,7 +37,7 @@ jobs:
           )" >> $GITHUB_ENV
 
       - name: Run the tests
-        run: forge test
+        run: make test
 
       - name: Add test summary
         run: |

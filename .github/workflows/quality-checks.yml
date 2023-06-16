@@ -50,10 +50,10 @@ jobs:
       - name: Install Foundry
         uses: foundry-rs/foundry-toolchain@v1
 
-      - name: Build the contracts and print their size
-        run: forge build --sizes
+      - name: Compile the contracts and print their size
+        run: make compile-s
 
-      - name: Add build summary
+      - name: Add compile summary
         run: |
           echo "## Build result" >> $GITHUB_STEP_SUMMARY
           echo "✅ Passed" >> $GITHUB_STEP_SUMMARY
