@@ -6,10 +6,8 @@ pre-push:
       run: make lint
     format:
       tags: quality
-      run: make prettier
+      run: make format
     test:
       run: make test
     build:
       run: make compile
-# @DEV: Use `CI=true` env variable if you want to bypass
-# the execution of the installed hooks
