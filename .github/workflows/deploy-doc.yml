@@ -1,0 +1,44 @@
+name: Deploy documentation
+
+# This workflow deploy a documentation of your library to GitHub Pages.
+# TODO: You MUST configure github pages in the settings of your repository
+# (settings/pages), set the branch to gh-pages and the folder to / (root).
+
+env:
+  FOUNDRY_PROFILE: "ci"
+
+# You are encouraged to protect the `gh-page` branch to prevent accidental
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - src/**
+      - .github/workflows/deploy-doc.yml
+      - foundry.toml
+      - README.md
+      - LICENSE.md
+      - CONTRIBUTING.md
+
+jobs:
+  deploy-doc:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Build the documentation
+        run: make doc
+
+      - name: Deploy the documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/book
+          branch: gh-pages
