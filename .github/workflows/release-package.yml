@@ -1,7 +1,8 @@
 name: Release on tag
 
 # Trigger the create release workflow when a new tag
-# respecting the pattern `v*` is pushed to the repository.
+# respecting the pattern `v*` is pushed to the repository and deploy
+# the new version of the documentation on the `gh-pages` branch.
 on:
   push:
     tags:
@@ -14,9 +15,33 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Create Release
         id: create_release
         uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
           repo_token: "${{ secrets.SMOOTH_QDQD_SECP256R1_RELEASE_TOKEN }}"
           prerelease: false
+
+  deploy-doc:
+    needs: ["release"]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Build the documentation
+        run: make doc
+
+      - name: Deploy the documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: docs/book
+          branch: gh-pages

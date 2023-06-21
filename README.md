@@ -155,10 +155,8 @@ This template comes with GitHub Actions pre-configured.
 
 - [quality-checks.yml](./.github/workflows/quality-checks.yml): runs the compilation command, the linter and the
   formatter on every push and pull request made to the `main` branch. The size of the contracts is printed in the logs.
-- [deploy-doc.yml](./.github/workflows/deploy-doc.yml): deploys the documentation to the `gh-pages` branch every time
-  you push to `main` branch. This action is only triggered when specific files are modified.
 - [release-package.yml](./.github/workflows/release-package.yml): creates a new release every time you push a new tag to
-  the repository. This action is only triggered on tags starting with `v`.
+  the repository. This action is only triggered on tags starting with `v`. Once the release is created, the action is also in charge of deploying the documentation to the `gh-pages` branch.
 - [static-analysis.yml](./.github/workflows/static-analysis.yml): runs the static analysis tool on every push and pull
   request made to the `main` branch. This action uses [slither](https://github.com/crytic/slither) and is only triggered
   when specific files are modified.
