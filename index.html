@@ -250,18 +250,32 @@ following files:</p>
 <ul>
 <li><a href="./.github/workflows/quality-checks.yml">quality-checks.yml</a>: runs the compilation command, the linter and the
 formatter on every push and pull request made to the <code>main</code> branch. The size of the contracts is printed in the logs.</li>
-<li><a href="./.github/workflows/deploy-doc.yml">deploy-doc.yml</a>: deploys the documentation to the <code>gh-pages</code> branch every time
-you push to <code>main</code> branch. This action is only triggered when specific files are modified.</li>
-<li><a href="./.github/workflows/release-package.yml">release-package.yml</a>: creates a new release every time you push a new tag to
-the repository. This action is only triggered on tags starting with <code>v</code>.</li>
 <li><a href="./.github/workflows/static-analysis.yml">static-analysis.yml</a>: runs the static analysis tool on every push and pull
 request made to the <code>main</code> branch. This action uses <a href="https://github.com/crytic/slither">slither</a> and is only triggered
 when specific files are modified.</li>
-<li><a href="./.github/workflows/tests.yml">tests.yml</a>: runs the tests on every push and pull request made to the <code>main</code> branch.
+<li><a href="./.github/workflows/tests.yml">tests.yml</a>: runs the tests onsevery push and pull request made to the <code>main</code> branch.
 This action also compare the gas cost between the <code>main</code> branch and the pull request branch and post the difference as
 a comment on the pull request.</li>
+<li><a href="./.github/workflows/release-package.yml">release-package.yml</a>: creates a new release every time you push a new tag to
+the repository. This action is only triggered on tags starting with <code>v</code>. Once the release is created, the action is
+also in charge of deploying the documentation to the <code>gh-pages</code> branch. <strong>THIS ACTION NEEDS AN ACTION FROM YOUR SIDE
+TO WORK</strong></li>
 </ul>
 <p>You can edit the CI scripts in the <a href="./.github/workflows">workflows directory</a>.</p>
+<h4 id="configure-the-release-action"><a class="header" href="#configure-the-release-action">Configure the release action</a></h4>
+<p>The release action is in charge of deploying the documentation to the <code>gh-pages</code> branch. To do so, it needs to have a
+personal access token with the right permissions. To create this token, go to the
+<a href="https://github.com/settings/tokens?type=beta">settings of your Github account</a>. Make sure to select the permissions
+listed below. Once create, copy the token, go to the Github repository of this project and create a secret named
+<code>RELEASE_TOKEN</code> with the value of the token you just created. Here are the <strong>repositories</strong> permissions required by the
+token:</p>
+<ul>
+<li>Actions: Read and write</li>
+<li>Contents: Read and write</li>
+<li>Commit statuses: Read-only</li>
+<li>Metadata: Read-only</li>
+<li>Pull requests: Read-only</li>
+</ul>
 <h2 id="writing-tests"><a class="header" href="#writing-tests">Writing Tests</a></h2>
 <p>To write a new test contract, you start by importing <a href="https://github.com/PaulRBerg/prb-test">PRBTest</a> and inherit from
 it in your test contract. PRBTest comes with a pre-instantiated <a href="https://book.getfoundry.sh/cheatcodes/">cheatcodes</a>
