@@ -20,7 +20,8 @@ jobs:
         env:
           GITHUB_REPOSITORY_DESCRIPTION: ${{ github.event.repository.description }}
         run:
-          ./.github/scripts/rename.sh "$GITHUB_REPOSITORY" "$GITHUB_REPOSITORY_OWNER" "$GITHUB_REPOSITORY_DESCRIPTION"
+          ./.github/scripts/setup-packagejson.sh "$GITHUB_REPOSITORY" "$GITHUB_REPOSITORY_OWNER"
+          "$GITHUB_REPOSITORY_DESCRIPTION"
 
       - name: "Add rename summary"
         run: |
@@ -30,7 +31,7 @@ jobs:
       - name: "Remove files not needed in the user's copy of the template"
         run: |
           rm -f "./.github/FUNDING.yml"
-          rm -f "./.github/scripts/rename.sh"
+          rm -f "./.github/scripts/setup-packagejson.sh"
           rm -f "./.github/workflows/create.yml"
 
       - name: "Add remove summary"
@@ -41,7 +42,7 @@ jobs:
       - name: "Update commit"
         uses: "stefanzweifel/git-auto-commit-action@v4"
         with:
-          commit_message: "feat: initial commit"
+          commit_message: "🎉 initialize the project using @qd-qd template"
           commit_options: "--amend"
           push_options: "--force"
           skip_fetch: true
