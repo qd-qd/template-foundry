@@ -1,15 +1,30 @@
-# Foundry Template [![Open in Gitpod][gitpod-badge]][gitpod] [![Github Actions][gha-badge]][gha] [![Foundry][foundry-badge]][foundry] [![License: MIT][license-badge]][license]
+# Foundry Template
 
-[gitpod]: https://gitpod.io/#https://github.com/PaulRBerg/foundry-template
+[![Open in Gitpod][gitpod-badge]][gitpod] [![Github Actions][gha-quality-badge]][gha-quality-url]
+[![Github Actions][gha-test-badge]][gha-test-url]
+[![Github Actions][gha-static-analysis-badge]][gha-static-analysis-url]
+[![Github Actions][gha-release-badge]][gha-release-url] [![Foundry][foundry-badge]][foundry]
+[![License: MIT][license-badge]][license]
+
+[gitpod]: https://gitpod.io/#https://github.com/qd-qd/template-foundry
 [gitpod-badge]: https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-FFB45B?logo=gitpod
-[gha]: https://github.com/PaulRBerg/foundry-template/actions
-[gha-badge]: https://github.com/PaulRBerg/foundry-template/actions/workflows/ci.yml/badge.svg
-[foundry]: https://getfoundry.sh/
+[gha-quality-url]: https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml
+[gha-quality-badge]:
+  https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml/badge.svg?branch=main
+[gha-test-url]: https://github.com/qd-qd/template-foundry/actions/workflows/tests.yml
+[gha-test-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/tests.yml/badge.svg?branch=main
+[gha-static-analysis-url]: https://github.com/qd-qd/template-foundry/actions/workflows/static-analysis.yml
+[gha-static-analysis-badge]:
+  https://github.com/qd-qd/template-foundry/actions/workflows/static-analysis.yml/badge.svg?branch=main
+[gha-release-url]: https://github.com/qd-qd/template-foundry/actions/workflows/release-package.yml
+[gha-release-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/release-package.yml/badge.svg
+[foundry]: https://book.getfoundry.sh/
 [foundry-badge]: https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg
-[license]: https://opensource.org/licenses/MIT
+[license]: ./LICENSE.md
 [license-badge]: https://img.shields.io/badge/License-MIT-blue.svg
 
-A Foundry-based template for developing Solidity smart contracts, with sensible defaults.
+A Foundry-based template for developing Solidity smart contracts, with sensible defaults. Based on
+[@PaulRBerg](https://github.com/PaulRBerg) [template](https://github.com/PaulRBerg/foundry-template).
 
 ## What's Inside
 
@@ -19,22 +34,95 @@ A Foundry-based template for developing Solidity smart contracts, with sensible 
 - [PRBTest](https://github.com/PaulRBerg/prb-test): modern collection of testing assertions and logging utilities
 - [Prettier](https://github.com/prettier/prettier): code formatter for non-Solidity files
 - [Solhint Community](https://github.com/solhint-community/solhint-community): linter for Solidity code
+- [Make](https://www.gnu.org/software/make/manual/make.html): build automation tool that allows developers to automate
+  repetitive tasks
+- [Lefthook](https://github.com/evilmartians/lefthook): Fast and powerful Git hooks manager for any type of projects
 
 ## Getting Started
 
-Click the [`Use this template`](https://github.com/PaulRBerg/foundry-template/generate) button at the top of the page to
+### Prerequisites
+
+This repository uses [`make`](https://www.gnu.org/software/make/manual/make.html) to automate repetitive tasks.
+
+`make` is a build automation tool that employs a file known as a makefile to automate the construction of executable
+programs and libraries. The makefile details the process of deriving the target program from the source files and other
+dependencies. This allows developers to automate repetitive tasks and manage complex build processes efficiently. `make`
+is our primary tool in a multi-environment repository. It enables us to centralize all commands into a single file
+([the makefile](./makefile)), eliminating the need to deal with `npm` scripts defined in a package.json or remembering
+the various commands provided by the `foundry` cli. If you're unfamiliar with `make`, you can read more about it
+[here](https://www.gnu.org/software/make/manual/make.html).
+
+> 💡 Running make at the root of the project will display a list of all the available commands. This can be useful to
+> know what you can do with the project.
+
+#### Make of Linux
+
+`make` is automatically included in all modern Linux distributions. If you're using Linux, you should be able to use
+`make` without any additional steps. If not, you can likely find it in the package tool you usually use.
+
+#### Make on MacOS
+
+MacOS users can install `make` using [Homebrew](https://formulae.brew.sh/formula/make) with the following command:
+
+```sh
+brew install make
+```
+
+### Installation
+
+Click the [`Use this template`](https://github.com/qd-qd/template-foundry/generate) button at the top of the page to
 create a new repository with this repo as the initial state.
 
 Or, if you prefer to install the template manually:
 
 ```sh
-forge init my-project --template https://github.com/PaulRBerg/foundry-template
+forge init my-project --template https://github.com/qd-qd/template-foundry
 cd my-project
-npm i # install Solhint, Prettier, and other Node.js deps
+make install # install the forge dependencies and the npm dependencies
 ```
 
 If this is your first time with Foundry, check out the
 [installation](https://github.com/foundry-rs/foundry#installation) instructions.
+
+> ℹ️ As part of the initialization process, a one-time script, which can be found
+> [here](./.github/workflows/setup-template.yml), is utilized to tailor the template to your specific project. This
+> script will automatically update the [package.json](./package.json) file with details like your project's name, the
+> author's name, the homepage, the repository URL, etc. Additionally, it will remove unnecessary files, such as the
+> FUNDING.yml file and the initialization script itself.
+
+### Git hooks
+
+This project uses `Lefthook` to manage Git hooks, which are scripts that run automatically when certain Git events
+occur, such as committing code or pushing changes to a remote repository. `Lefthook` simplifies the management and
+execution of these scripts.
+
+After installing the dependencies, you can configure the Git hooks by running the following command in the project
+directory:
+
+```sh
+make hooks-i
+```
+
+This command installs a Git hook that runs Lefthook before pushing code to a remote repository. If Lefthook fails, the
+push is aborted.
+
+If you wish to run Lefthook manually, you can use the following command:
+
+```sh
+make hooks
+```
+
+Executing this will activate all the Git hooks specified in the [lefthook](./lefthook.yml) file, including commands for
+linting, formatting, testing, and compiling.
+
+#### Skipping git hooks
+
+If you need to intentionally skip Lefthook, you can pass the `--no-verify` flag to the git push command. For example to
+bypass Lefthook when pushing code, use the following command:
+
+```sh
+git push origin --no-verify
+```
 
 ## Features
 
@@ -51,81 +139,65 @@ This template comes with a set of sensible default configurations for you to use
 following files:
 
 ```text
-├── .editorconfig
 ├── .gitignore
 ├── .prettierignore
 ├── .prettierrc.yml
 ├── .solhint.json
-├── foundry.toml
-└── remappings.txt
+├── .nvmrc
+├── lefthook.yml
+├── makefile
+├── slither.config.json
+└── foundry.toml
 ```
-
-### VSCode Integration
-
-This template is IDE agnostic, but for the best user experience, you may want to use it in VSCode alongside Nomic
-Foundation's [Solidity extension](https://marketplace.visualstudio.com/items?itemName=NomicFoundation.hardhat-solidity).
-
-For guidance on how to integrate a Foundry project in VSCode, please refer to this
-[guide](https://book.getfoundry.sh/config/vscode).
 
 ### GitHub Actions
 
-This template comes with GitHub Actions pre-configured. Your contracts will be linted and tested on every push and pull
-request made to the `main` branch.
+This template comes with GitHub Actions pre-configured.
 
-You can edit the CI script in [.github/workflows/ci.yml](./.github/workflows/ci.yml).
+- [quality-checks.yml](./.github/workflows/quality-checks.yml): runs the compilation command, the linter and the
+  formatter on every push and pull request made to the `main` branch. The size of the contracts is printed in the logs.
+- [deploy-doc.yml](./.github/workflows/deploy-doc.yml): deploys the documentation to the `gh-pages` branch every time
+  you push to `main` branch. This action is only triggered when specific files are modified.
+- [release-package.yml](./.github/workflows/release-package.yml): creates a new release every time you push a new tag to
+  the repository. This action is only triggered on tags starting with `v`.
+- [static-analysis.yml](./.github/workflows/static-analysis.yml): runs the static analysis tool on every push and pull
+  request made to the `main` branch. This action uses [slither](https://github.com/crytic/slither) and is only triggered
+  when specific files are modified.
+- [tests.yml](./.github/workflows/tests.yml): runs the tests on every push and pull request made to the `main` branch.
+  This action also compare the gas cost between the `main` branch and the pull request branch and post the difference as
+  a comment on the pull request.
+
+You can edit the CI scripts in the [workflows directory](./.github/workflows).
 
 ## Writing Tests
 
 To write a new test contract, you start by importing [PRBTest](https://github.com/PaulRBerg/prb-test) and inherit from
 it in your test contract. PRBTest comes with a pre-instantiated [cheatcodes](https://book.getfoundry.sh/cheatcodes/)
-environment accessible via the `vm` property. If you would like to view the logs in the terminal output you can add the
-`-vvv` flag and use [console.log](https://book.getfoundry.sh/faq?highlight=console.log#how-do-i-use-consolelog).
+environment accessible via the `vm` property. If you would like to view the logs in the terminal output you can run the
+dedicated verbose command and use
+[console.log](https://book.getfoundry.sh/faq?highlight=console.log#how-do-i-use-consolelog).
 
 This template comes with an example test contract [Foo.t.sol](./test/Foo.t.sol)
 
 ## Usage
 
-This is a list of the most frequently needed commands.
-
-### Build
-
-Build the contracts:
+You can access a list of all available commands by running `make` in the project's root directory.
 
 ```sh
-$ forge build
+make
 ```
 
-### Clean
+These commands are outlined in the [makefile](./Makefile).
 
-Delete the build artifacts and cache directories:
-
-```sh
-$ forge clean
-```
-
-### Compile
-
-Compile the contracts:
-
-```sh
-$ forge build
-```
-
-### Coverage
-
-Get a test coverage report:
-
-```sh
-$ forge coverage
-```
+## Scripts
 
 ### Deploy
 
-Deploy to Anvil:
+This script is located in the [script](./script) directory. It deploys the contract to a network. For example, to deploy
+to [Anvil](https://book.getfoundry.sh/anvil/), you can run the following command:
 
 ```sh
-$ forge script script/Deploy.s.sol --broadcast --fork-url http://localhost:8545
+forge script script/Deploy.s.sol --broadcast --fork-url http://localhost:8545
 ```
 
 For this script to work, you need to have a `MNEMONIC` environment variable set to a valid
@@ -134,38 +206,6 @@ For this script to work, you need to have a `MNEMONIC` environment variable set 
 For instructions on how to deploy to a testnet or mainnet, check out the
 [Solidity Scripting](https://book.getfoundry.sh/tutorials/solidity-scripting.html) tutorial.
 
-### Format
-
-Format the contracts:
-
-```sh
-$ forge fmt
-```
-
-### Gas Usage
-
-Get a gas report:
-
-```sh
-$ forge test --gas-report
-```
-
-### Lint
-
-Lint the contracts:
-
-```sh
-$ npm run quality
-```
-
-### Test
-
-Run the tests:
-
-```sh
-$ forge test
-```
-
 ## Notes
 
 1. Foundry uses [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules) to manage dependencies. For
@@ -173,6 +213,13 @@ $ forge test
    [guide](https://book.getfoundry.sh/projects/dependencies.html) in the book
 2. You don't have to create a `.env` file, but filling in the environment variables may be useful when debugging and
    testing against a fork.
+3. This template uses [npm](https://www.npmjs.com/) to manage JavaScript dependencies.
+4. This template only uses [slither](https://github.com/crytic/slither) in the CI pipeline. If you want to run it
+   locally, you need to install it for yourself by following the instructions in the
+   [documentation](https://github.com/crytic/slither#how-to-install).
+5. This template includes a opiniated [contributing guide](./.github/CONTRIBUTING.md) you free to update.
+6. Remappings are configured in the [foundry.toml file](./foundry.toml) file in order to centralize the configuration.
+   Feel free to update them.
 
 ## Related Efforts
 
@@ -180,7 +227,14 @@ $ forge test
 - [cleanunicorn/ethereum-smartcontract-template](https://github.com/cleanunicorn/ethereum-smartcontract-template)
 - [foundry-rs/forge-template](https://github.com/foundry-rs/forge-template)
 - [FrankieIsLost/forge-template](https://github.com/FrankieIsLost/forge-template)
+- [PaulRBerg/foundry-template](https://github.com/PaulRBerg/foundry-template)
 
 ## License
 
 This project is licensed under MIT.
+
+## Acknowledgements
+
+This template has been boostrapped using [@PaulRBerg](https://github.com/PaulRBerg)
+[template](https://github.com/PaulRBerg/foundry-template). This version is a bit more opinionated (`make`...) and comes
+with a few more features. Thanks to him for his valuable contributions to the community.
