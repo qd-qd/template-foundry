@@ -20,7 +20,8 @@ jobs:
         id: create_release
         uses: "marvinpinto/action-automatic-releases@v1.2.1"
         with:
-          repo_token: "${{ secrets.SMOOTH_QDQD_SECP256R1_RELEASE_TOKEN }}"
+          # TODO: YOU MUST CONFIGURE THIS TOKEN BY OURSEFL. CHECK THE README FOR MORE INFORMATION.
+          repo_token: "${{ secrets.RELEASE_TOKEN }}"
           prerelease: false
 
   deploy-doc:

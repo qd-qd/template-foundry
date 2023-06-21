@@ -155,16 +155,33 @@ This template comes with GitHub Actions pre-configured.
 
 - [quality-checks.yml](./.github/workflows/quality-checks.yml): runs the compilation command, the linter and the
   formatter on every push and pull request made to the `main` branch. The size of the contracts is printed in the logs.
-- [release-package.yml](./.github/workflows/release-package.yml): creates a new release every time you push a new tag to
-  the repository. This action is only triggered on tags starting with `v`. Once the release is created, the action is also in charge of deploying the documentation to the `gh-pages` branch.
 - [static-analysis.yml](./.github/workflows/static-analysis.yml): runs the static analysis tool on every push and pull
   request made to the `main` branch. This action uses [slither](https://github.com/crytic/slither) and is only triggered
   when specific files are modified.
-- [tests.yml](./.github/workflows/tests.yml): runs the tests on every push and pull request made to the `main` branch.
+- [tests.yml](./.github/workflows/tests.yml): runs the tests onsevery push and pull request made to the `main` branch.
   This action also compare the gas cost between the `main` branch and the pull request branch and post the difference as
   a comment on the pull request.
+- [release-package.yml](./.github/workflows/release-package.yml): creates a new release every time you push a new tag to
+  the repository. This action is only triggered on tags starting with `v`. Once the release is created, the action is
+  also in charge of deploying the documentation to the `gh-pages` branch. **THIS ACTION NEEDS AN ACTION FROM YOUR SIDE
+  TO WORK**
 
 You can edit the CI scripts in the [workflows directory](./.github/workflows).
+
+#### Configure the release action
+
+The release action is in charge of deploying the documentation to the `gh-pages` branch. To do so, it needs to have a
+personal access token with the right permissions. To create this token, go to the
+[settings of your Github account](https://github.com/settings/tokens?type=beta). Make sure to select the permissions
+listed below. Once create, copy the token, go to the Github repository of this project and create a secret named
+`RELEASE_TOKEN` with the value of the token you just created. Here are the **repositories** permissions required by the
+token:
+
+- Actions: Read and write
+- Contents: Read and write
+- Commit statuses: Read-only
+- Metadata: Read-only
+- Pull requests: Read-only
 
 ## Writing Tests
 
