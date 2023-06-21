@@ -1,7 +1,7 @@
 {
   "name": "@qd-qd/template-foundry",
   "description": "Foundry-based template for developing Solidity smart contracts. Based on PaulRBerg template.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "qd-qd https://github.com/qd-qd",
   "repository": "github:@qd-qd/template-foundry",
   "bugs": "https://github.com/qd-qd/template-foundry/issues",
