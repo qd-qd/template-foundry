@@ -21,6 +21,7 @@
     "node": ">= 18"
   },
   "devDependencies": {
+    "lefthook": "^1.4.1",
     "prettier": "^2.8.7",
     "solhint-community": "^3.5.0"
   },
@@ -33,13 +34,15 @@
     "smart-contracts",
     "solidity"
   ],
-
   "scripts": {
     "clean": "rm -rf cache out",
     "lint": "forge fmt --check && solhint \"{script,src,test}/**/*.sol\"",
     "lint:write": "forge fmt && solhint \"{script,src,test}/**/*.sol\" --fix",
-    "prettier:check": "prettier --check \"**/*.{json,md,yml}\"",
+    "prettier": "prettier --check \"**/*.{json,md,yml}\"",
     "prettier:write": "prettier --write \"**/*.{json,md,yml}\"",
-    "quality": "npm run lint && npm run prettier"
+    "quality": "npm run lint && npm run prettier",
+    "hooks": "lefthook run pre-push",
+    "hooks:install": "lefthook install",
+    "hooks:uninstall": "lefthook uninstall"
   }
 }
