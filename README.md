@@ -6,17 +6,17 @@
 [![Github Actions][gha-release-badge]][gha-release-url] [![Foundry][foundry-badge]][foundry]
 [![License: MIT][license-badge]][license]
 
-[gitpod]: https://gitpod.io/#https://github.com/qd-qd/template-foundry
+[gitpod]: https://gitpod.io/#https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry
 [gitpod-badge]: https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-FFB45B?logo=gitpod
-[gha-quality-url]: https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml
-[gha-quality-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml/badge.svg?branch=main
-[gha-test-url]: https://github.com/qd-qd/template-foundry/actions/workflows/tests.yml
-[gha-test-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/tests.yml/badge.svg?branch=main
-[gha-static-analysis-url]: https://github.com/qd-qd/template-foundry/actions/workflows/static-analysis.yml
+[gha-quality-url]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/quality-checks.yml
+[gha-quality-badge]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/quality-checks.yml/badge.svg?branch=main
+[gha-test-url]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/tests.yml
+[gha-test-badge]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/tests.yml/badge.svg?branch=main
+[gha-static-analysis-url]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/static-analysis.yml
 [gha-static-analysis-badge]:
-  https://github.com/qd-qd/template-foundry/actions/workflows/static-analysis.yml/badge.svg?branch=main
-[gha-release-url]: https://github.com/qd-qd/template-foundry/actions/workflows/release-package.yml
-[gha-release-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/release-package.yml/badge.svg
+  https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/static-analysis.yml/badge.svg?branch=main
+[gha-release-url]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/release-package.yml
+[gha-release-badge]: https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/actions/workflows/release-package.yml/badge.svg
 [foundry]: https://book.getfoundry.sh/
 [foundry-badge]: https://img.shields.io/badge/Built%20with-Foundry-FFDB1C.svg
 [license]: ./LICENSE.md
@@ -69,13 +69,13 @@ brew install make
 
 ### Installation
 
-Click the [`Use this template`](https://github.com/qd-qd/template-foundry/generate) button at the top of the page to
+Click the [`Use this template`](https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry/generate) button at the top of the page to
 create a new repository with this repo as the initial state.
 
 Or, if you prefer to install the template manually:
 
 ```sh
-forge init my-project --template https://github.com/qd-qd/template-foundry
+forge init my-project --template https://github.com/0x90d2b2b7fb7599eebb6e7a32980857d8/template-foundry
 cd my-project
 make install # install the forge dependencies and the npm dependencies
 ```

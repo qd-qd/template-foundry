@@ -42,7 +42,7 @@ jobs:
       - name: "Update commit"
         uses: "stefanzweifel/git-auto-commit-action@v4"
         with:
-          commit_message: "🎉 initialize the project using @qd-qd template"
+          commit_message: "🎉 initialize the project using @0x90d2b2b7fb7599eebb6e7a32980857d8 template"
           commit_options: "--amend"
           push_options: "--force"
           skip_fetch: true
