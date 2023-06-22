@@ -37,7 +37,7 @@ sedi() {
 }
 
 # Rename instances of "qd-qd/template-foundry" to the new repo name in README.md for badges only
-sedi "/gitpod/ s|qd-qd/template-foundry|"${GITHUB_REPOSITORY}"|;" "README.md"
+sedi "/github-editor-url/ s|qd-qd/template-foundry|"${GITHUB_REPOSITORY}"|;" "README.md"
 sedi "/gha-quality-url/ s|qd-qd/template-foundry|"${GITHUB_REPOSITORY}"|;" "README.md"
 sedi "/gha-quality-badge/ s|qd-qd/template-foundry|"${GITHUB_REPOSITORY}"|;" "README.md"
 sedi "/gha-test-url/ s|qd-qd/template-foundry|"${GITHUB_REPOSITORY}"|;" "README.md"

@@ -1,13 +1,13 @@
 # Foundry Template
 
-[![Open in Gitpod][gitpod-badge]][gitpod] [![Github Actions][gha-quality-badge]][gha-quality-url]
+[![Open in Github][github-editor-badge]][github-editor-url] [![Github Actions][gha-quality-badge]][gha-quality-url]
 [![Github Actions][gha-test-badge]][gha-test-url]
 [![Github Actions][gha-static-analysis-badge]][gha-static-analysis-url]
 [![Github Actions][gha-release-badge]][gha-release-url] [![Foundry][foundry-badge]][foundry]
 [![License: MIT][license-badge]][license]
 
-[gitpod]: https://gitpod.io/#https://github.com/qd-qd/template-foundry
-[gitpod-badge]: https://img.shields.io/badge/Gitpod-Open%20in%20Gitpod-FFB45B?logo=gitpod
+[github-editor-url]: https://github.dev/qd-qd/template-foundry/tree/main
+[github-editor-badge]: https://img.shields.io/badge/Github-Open%20the%20Editor-purple?logo=github
 [gha-quality-url]: https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml
 [gha-quality-badge]: https://github.com/qd-qd/template-foundry/actions/workflows/quality-checks.yml/badge.svg?branch=main
 [gha-test-url]: https://github.com/qd-qd/template-foundry/actions/workflows/tests.yml
