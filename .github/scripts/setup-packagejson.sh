@@ -12,8 +12,8 @@ echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
 echo "GITHUB_REPOSITORY_OWNER: $GITHUB_REPOSITORY_OWNER"
 echo "GITHUB_REPOSITORY_DESCRIPTION: $GITHUB_REPOSITORY_DESCRIPTION"
 
-# jq is like sed for JSON data
-JQ_OUTPUT=$(
+# Create a new package.json file with the new values
+JQ_OUTPUT_PACKAGE=$(
   jq \
     --arg NAME "@$GITHUB_REPOSITORY" \
     --arg AUTHOR "$GITHUB_REPOSITORY_OWNER https://github.com/$GITHUB_REPOSITORY_OWNER" \
@@ -27,8 +27,17 @@ JQ_OUTPUT=$(
     package.json
 )
 
-# Overwrite package.json
-echo "$JQ_OUTPUT" >package.json
+# Create a new package-lock.json file with the new values
+JQ_OUTPUTPACKAGE_LOCK=$(
+  jq \
+    --arg VERSION "0.0.1" \
+    '.version = $VERSION | .packages."".version = $VERSION' \
+    package-lock.json
+)
+
+# Save the new version of the package.json and package-lock.json files
+echo "$JQ_OUTPUT_PACKAGE" >package.json
+echo "$JQ_OUTPUTPACKAGE_LOCK" >package-lock.json
 
 # Make sed command compatible in both Mac and Linux environments
 # Reference: https://stackoverflow.com/a/38595160/8696958
