@@ -113,12 +113,12 @@ lefthok-install:
 lefthok-uninstall:
 	@runcmd npx lefthook uninstall
 
-.PHONY: lint
-lint:
+.PHONY: linter
+linter:
 	@runcmd forge fmt --check && npx solhint "{script,src,test}/**/*.sol"
 
-.PHONY: lint-fix
-lint-fix:
+.PHONY: linter-fix
+linter-fix:
 	@runcmd forge fmt && npx solhint "{script,src,test}/**/*.sol" --fix
 
 .PHONY: prettier
@@ -146,8 +146,8 @@ tree: forge-tree
 hooks: lefthok-run
 hooks-i: lefthok-install
 hooks-u: lefthok-uninstall
-lint: lint
-lint-fix: lint-fix
+lint: linter
+lint-fix: linter-fix
 format: prettier
 format-fix: prettier-fix
 quality: lint prettier
