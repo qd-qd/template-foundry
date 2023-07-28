@@ -158,9 +158,7 @@ This template comes with GitHub Actions pre-configured.
 - [static-analysis.yml](./.github/workflows/static-analysis.yml): runs the static analysis tool on every push and pull
   request made to the `main` branch. This action uses [slither](https://github.com/crytic/slither) and is only triggered
   when specific files are modified.
-- [tests.yml](./.github/workflows/tests.yml): runs the tests onsevery push and pull request made to the `main` branch.
-  This action also compare the gas cost between the `main` branch and the pull request branch and post the difference as
-  a comment on the pull request.
+- [tests.yml](./.github/workflows/tests.yml): runs the tests on every push and pull request made to the `main` branch. This action also compare the gas cost between the `main` branch and the pull request branch and post the difference as a comment on the pull request. Finally this action check the code coverage and post the result as a comment on the pull request. A threshold can be configured by unchecking the concerned line in the workflow file. This workflow uses [lcov](https://github.com/linux-test-project/lcov) for the coverage.
 - [release-package.yml](./.github/workflows/release-package.yml): creates a new release every time you push a new tag to
   the repository. This action is only triggered on tags starting with `v`. Once the release is created, the action is
   also in charge of deploying the documentation to the `gh-pages` branch. **THIS ACTION NEEDS AN ACTION FROM YOUR SIDE
