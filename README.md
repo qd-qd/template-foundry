@@ -30,7 +30,6 @@ A Foundry-based template for developing Solidity smart contracts, with sensible 
 - [Forge](https://github.com/foundry-rs/foundry/blob/master/forge): compile, test, fuzz, format, and deploy smart
   contracts
 - [Forge Std](https://github.com/foundry-rs/forge-std): collection of helpful contracts and cheatcodes for testing
-- [PRBTest](https://github.com/PaulRBerg/prb-test): modern collection of testing assertions and logging utilities
 - [Prettier](https://github.com/prettier/prettier): code formatter for non-Solidity files
 - [Solhint Community](https://github.com/solhint-community/solhint-community): linter for Solidity code
 - [Make](https://www.gnu.org/software/make/manual/make.html): build automation tool that allows developers to automate
@@ -183,8 +182,10 @@ token:
 
 ## Writing Tests
 
-To write a new test contract, you start by importing [PRBTest](https://github.com/PaulRBerg/prb-test) and inherit from
-it in your test contract. PRBTest comes with a pre-instantiated [cheatcodes](https://book.getfoundry.sh/cheatcodes/)
+import { Test } from "forge-std/Test.sol";
+
+To write a new test contract, you start by importing `Test` and inherit from
+it in your test contract. The test library comes with a pre-instantiated [cheatcodes](https://book.getfoundry.sh/cheatcodes/)
 environment accessible via the `vm` property. If you would like to view the logs in the terminal output you can run the
 dedicated verbose command and use
 [console.log](https://book.getfoundry.sh/faq?highlight=console.log#how-do-i-use-consolelog).
